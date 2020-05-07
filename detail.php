@@ -7,7 +7,7 @@ MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a
   
 $preference = new MercadoPago\Preference();
 
-$url = "https://alejoconstante-mp-ecommerce-ph.herokuapp.com/";
+$url = "https://tinkalawinka-mp-ecommerce-php.herokuapp.com/";
 
 $item1 = new MercadoPago\Item();
 $item1->id = "1234";
@@ -17,6 +17,8 @@ $item1->unit_price = $_POST['price'];
 $item1->picture_url = $url . "assets/003.jpg";
 
 $preference->items = array($item1);
+
+//$preference->auto_return = "approved";
 
 $payer = new MercadoPago\Payer(
     array(
@@ -38,7 +40,6 @@ $payer = new MercadoPago\Payer(
         ),
     )
 );
-
 
 $preference->notification_url = $url."notification.php";
 
@@ -195,12 +196,12 @@ $preference->save();
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                              
+          <form action="procesar-pago.php" method="POST">                    
   <script data-button-label='Pagar la compra' data-elements-color='#2D3277' data-header-color="#2D3277"
    src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
    data-preference-id="<?php echo $preference->id; ?>">
   </script>
-
+</form>
                                 </div>
                             </div>
                         </div>
